@@ -4,13 +4,14 @@ const port = 3000
 
 app.get('/', (req, res) => {
   res.send('This is the server for B-sharp!')
+  console.log('Got a GET request\n');
 })
 
 app.post('/', (req, res) => {
-  res.send('Got a POST request');
-  console.log(req);
+  console.log('Got a POST request');
+  console.log(req.body)
 })
 
 app.listen(port, () => {
-  console.log(`App listeningon port ${port}`)
+  console.log(`App listening on port ${port}`)
 })
