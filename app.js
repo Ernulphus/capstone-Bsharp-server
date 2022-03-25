@@ -1,23 +1,19 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 const app = express()
 const port = 3000
 
-app.use(express.json()) // for parsing application/json
+app.use(bodyParser.text());
 
 app.get('/', (req, res) => {
-  res.send('This is the server for B-sharp!')
+  res.send(recentimage)
   console.log('Got a GET request\n');
 })
 
 app.post('/', (req, res) => {
-  console.log('Got a POST request');
-  if (req.body){
-    console.log(req.body);
-  }
-  else {
-    console.log("No body knows");
-  }
-
+  console.log('Got a POST request ' + Date.now());
+  console.log(JSON.parse(req.body));
+  res.send('ok');
 })
 
 app.listen(port, () => {
