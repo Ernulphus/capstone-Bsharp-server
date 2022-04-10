@@ -15,9 +15,9 @@ app.get('/', (req, res) => {
 // When receiving a POST, log its contents to confirm proper receipt
 app.post('/', (req, res) => {
   console.log('Got a POST request ' + Date.now());
-  pic = JSON.parse(JSON.parse(req.body));
+  pic = JSON.parse(req.body);
   console.log(pic);
-  res.send('ok');
+  res.append('guess', 'Beep boop this is an image of something!').end();
 })
 
 app.listen(port, () => {
