@@ -5,11 +5,11 @@ const port = 3000
 let lastImage;
 
 // Middleware to parse the req body as multipart/form-data
-const multer  = require('multer')
-const upload = multer({ dest: 'uploads/' })
+// const multer  = require('multer')
+// const upload = multer({ dest: 'uploads/' })
 
 // Middleware to parse the req body as text (it's stringified JSON)
-// app.use(bodyParser.text());
+app.use(bodyParser.text());
 
 
 app.get('/', (req, res) => {
