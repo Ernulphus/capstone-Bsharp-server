@@ -11,11 +11,6 @@ const submit = multer({ dest: 'submits/' })
 // Middleware to parse the req body as text (it's stringified JSON)
 // app.use(bodyParser.text());
 
-
-app.get('/', (req, res) => {
-  res.send("<p>Oy! Why are you trying to get me???</p>)
-})
-
 // When receiving a POST, log its contents to confirm proper receipt
 app.post('/', submit.single('submission'), function (req, res, next) {
   console.log('Got a POST request ' + Date.now());
