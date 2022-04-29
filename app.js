@@ -7,12 +7,13 @@ const port = 3000
 const multer  = require('multer')
 const submit = multer({ dest: 'submits/' })
 
+
 // Middleware to parse the req body as text (it's stringified JSON)
 // app.use(bodyParser.text());
 
 
 app.get('/', (req, res) => {
-  res.send(lastImage)
+  res.send("<p>Oy! Why are you trying to get me???</p>)
 })
 
 // When receiving a POST, log its contents to confirm proper receipt
