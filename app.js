@@ -5,7 +5,7 @@ const port = 3000
 
 // Middleware to parse the req body as multipart/form-data
 const multer  = require('multer')
-const submit = multer({ dest: 'submits/' })
+const submit = multer({ dest: '../capstone-Bsharp-AI/usersubmissions/' })
 
 
 // Middleware to parse the req body as text (it's stringified JSON)
