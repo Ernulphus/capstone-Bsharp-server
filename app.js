@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const execSync = require('child_process').execSync; // For calling the model
 const app = express()
 const port = 3000
 
@@ -21,20 +22,13 @@ app.post('/', submit.single('submission'), function (req, res, next) {
 
   res.append('guess', 'Beep boop this is an image of something!').end();
 
-  // for (key in pic){
-  //   console.log(key);
-  //   console.log(pic[key]);
-  //   console.log();
-  // }
-  // const file = new File(
-	// 	pic,
-	// 	'filename.jpeg',
-	// 	{
-	// 		type: pic.type,
-	// 		lastModified: new Date().getTime()
-	// 	}
-	// )
-
+  try {
+  	const output = execSync('ls', { encoding: 'utf-8' });
+	console.log('Output was: \n', output);
+  }
+  catch (error) {
+  	console.log(error);
+  }
 })
 
 app.listen(port, () => {
