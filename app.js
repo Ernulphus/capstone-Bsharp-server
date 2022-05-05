@@ -6,7 +6,7 @@ const port = 3000
 
 // Middleware to parse the req body as multipart/form-data
 const multer  = require('multer')
-const submit = multer({ dest: '../capstone-Bsharp-AI/usersubmissions/' })
+const submit = multer({ dest: '/root/capstone-Bsharp-AI/usersubmissions' })
 
 
 // Middleware to parse the req body as text (it's stringified JSON)
@@ -20,15 +20,25 @@ app.post('/', submit.single('submission'), function (req, res, next) {
 
   console.log(pic, req.body);
 
-  res.append('guess', 'Beep boop this is an image of something!').end();
-
+  // Default guess if the model calling script fails
+  let guessres = 'something I suppose!';
+  
+  // Attempt to call the model
   try {
-  	const output = execSync('ls', { encoding: 'utf-8' });
+  	const output = execSync('python3 /root/capstone-Bsharp-AI/ML\ MODEL\ LEARNING/predictor.py '+pic.path , { encoding: 'utf-8' });
+	
 	console.log('Output was: \n', output);
+
+	guessres = output;
   }
   catch (error) {
   	console.log(error);
   }
+
+  // Send guess to app
+  res.append('guess', "This is a " + guessres).end();
+
+
 })
 
 app.listen(port, () => {
